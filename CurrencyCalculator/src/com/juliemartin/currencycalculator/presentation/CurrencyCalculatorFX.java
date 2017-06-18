@@ -25,15 +25,16 @@ public class CurrencyCalculatorFX {
     private TextField currencyCode;
     private TextField currencyAmount;
     private TextField value;
-    private Label amountLabel;
-    private Label title;
+//    private Label amountLabel;
+//    private Label title;
 
     private int calculationType;
 
     public CurrencyCalculatorFX(MoneyBean money, RecordBean record) {
         this.money = money;
         this.record = record;
-        calculationType = 0; // Loan
+        calculationType = 0; // Buy
+        calculationType = 1; // Sell
     }
   
         // Create Layout Method
@@ -142,19 +143,19 @@ public class CurrencyCalculatorFX {
    private void calculateButtonHandler(ActionEvent e) {
         boolean doCalculation = true;
         try {
-            finance.setInputValue(new BigDecimal(amountValue.getText()));
+            record.setInputValue(new BigDecimal(amountValue.getText()));
         } catch (NumberFormatException nfe) {
             doCalculation = false;
             numberFormatAlert(amountValue.getText(), "Loan");
         }
         try {
-            finance.setRate(new BigDecimal(rateValue.getText()));
+            record.setRate(new BigDecimal(rateValue.getText()));
         } catch (NumberFormatException nfe) {
             doCalculation = false;
             numberFormatAlert(rateValue.getText(), "Rate");
         }
         try {
-            finance.setTerm(new BigDecimal(termValue.getText()));
+            record.setTerm(new BigDecimal(termValue.getText()));
         } catch (NumberFormatException nfe) {
             doCalculation = false;
             numberFormatAlert(termValue.getText(), "Term");
@@ -163,16 +164,13 @@ public class CurrencyCalculatorFX {
         if (doCalculation == true) {
             switch (calculationType) {
                 case 0:
-                    calc.loanCalculation(finance);
+                    money.buyCalculation(record);
                     break;
                 case 1:
-                    calc.futureValueCalculation(finance);
+                    money.sellValueCalculation(record);
                     break;
-                case 2:
-                    calc.savingsGoalCalculation(finance);
-                    break;
-            }
-            resultValue.setText(finance.getResult().toString());
+                }
+            result.setText(record.getResult().toString());
         }
     }
 
