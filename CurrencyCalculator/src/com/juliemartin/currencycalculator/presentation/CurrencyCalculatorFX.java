@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -138,6 +139,23 @@ public class CurrencyCalculatorFX {
         layout.setVgap(10.0);
         
         return layout;
+    }
+        
+  
+    /**
+     * Display an Alert box if there is a NumberFormatException detected in the
+     * calculateButtonHandler
+     *
+     * @param badValue
+     * @param textField
+     */
+    private void numberFormatAlert(String badValue, String textField) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Number Format Error");
+        alert.setHeaderText("The value \"" + badValue + "\" cannot be converted to a number for the " + textField);
+        alert.setContentText("Number Format Error");
+
+        alert.showAndWait();
     }
         
    private void calculateButtonHandler(ActionEvent e) {
