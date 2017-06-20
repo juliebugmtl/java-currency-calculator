@@ -16,8 +16,8 @@ public class MoneyBean {
     private String currency;
     
     public MoneyBean() {
-        amount = new double();
-        value = new double();
+        amount = new double(0.0);
+        value = new double(0.0);
         currency = new String("");
         
     }
