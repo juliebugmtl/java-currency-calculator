@@ -6,13 +6,16 @@ import java.math.BigDecimal;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 /**
  *
@@ -121,9 +124,9 @@ public class CurrencyCalculatorFX {
         layout.add(hboxBtn, 0, 4, 2, 1);
         
         // Connect the buttons to their event handler
-        buy.setOnAction(this::buyAction);
-        sell.setOnAction(this::buyAction);
-        exit.setOnAction(this::exitAction);
+        // buy.setOnAction(this::buyAction);
+        // sell.setOnAction(this::buyAction);
+        // exit.setOnAction(this::exitAction);
         
         // Set the column widths as a percentage
         ColumnConstraints col1 = new ColumnConstraints();
@@ -158,41 +161,51 @@ public class CurrencyCalculatorFX {
         alert.showAndWait();
     }
         
-   private void calculateButtonHandler(ActionEvent e) {
-        boolean doCalculation = true;
-        try {
-            record.setInputValue(new BigDecimal(amountValue.getText()));
-        } catch (NumberFormatException nfe) {
-            doCalculation = false;
-            numberFormatAlert(amountValue.getText(), "Loan");
-        }
-        try {
-            record.setRate(new BigDecimal(rateValue.getText()));
-        } catch (NumberFormatException nfe) {
-            doCalculation = false;
-            numberFormatAlert(rateValue.getText(), "Rate");
-        }
-        try {
-            record.setTerm(new BigDecimal(termValue.getText()));
-        } catch (NumberFormatException nfe) {
-            doCalculation = false;
-            numberFormatAlert(termValue.getText(), "Term");
-        }
+//   private void calculateButtonHandler(ActionEvent e) {
+//        boolean doCalculation = true;
+//        try {
+//            record.setInputValue(new BigDecimal(amountValue.getText()));
+//        } catch (NumberFormatException nfe) {
+//            doCalculation = false;
+//            numberFormatAlert(amountValue.getText(), "Loan");
+//        }
+//        try {
+//            record.setRate(new BigDecimal(rateValue.getText()));
+//        } catch (NumberFormatException nfe) {
+//            doCalculation = false;
+//            numberFormatAlert(rateValue.getText(), "Rate");
+//        }
+//        try {
+//            record.setTerm(new BigDecimal(termValue.getText()));
+//        } catch (NumberFormatException nfe) {
+//            doCalculation = false;
+//            numberFormatAlert(termValue.getText(), "Term");
+//        }
+//
+//        if (doCalculation == true) {
+//            switch (calculationType) {
+//                case 0:
+//                    money.buyCalculation(record);
+//                    break;
+//                case 1:
+//                    money.sellValueCalculation(record);
+//                    break;
+//                }
+//            result.setText(record.getResult().toString());
+//        }
+//    }
 
-        if (doCalculation == true) {
-            switch (calculationType) {
-                case 0:
-                    money.buyCalculation(record);
-                    break;
-                case 1:
-                    money.sellValueCalculation(record);
-                    break;
-                }
-            result.setText(record.getResult().toString());
-        }
+
+    public void start(Stage primaryStage) {
+
+        BorderPane root = new BorderPane();
+        Scene scene = new Scene(root, 600, 450);
+
+        primaryStage.setTitle("Calculations");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
-
-
+    
 }
 
 

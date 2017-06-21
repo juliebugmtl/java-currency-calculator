@@ -17,8 +17,8 @@ public class RecordBean {
     
     public RecordBean() {
         currencyCode = new String("");
-        sellPerCAD = new double;
-        buyPerCAD = new double;
+        sellPerCAD = 0.0;
+        buyPerCAD = 0.0;
            
     }
 
