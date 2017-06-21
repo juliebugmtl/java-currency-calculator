@@ -6,13 +6,16 @@ import java.math.BigDecimal;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 /**
  *
@@ -193,6 +196,16 @@ public class CurrencyCalculatorFX {
 //    }
 
 
+    public void start(Stage primaryStage) {
+
+        BorderPane root = new BorderPane();
+        Scene scene = new Scene(root, 600, 450);
+
+        primaryStage.setTitle("Calculations");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
 }
 
 
